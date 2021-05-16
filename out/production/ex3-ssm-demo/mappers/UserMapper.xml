@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="p.doctor.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="p.doctor.entity.User">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+    </resultMap>
+
+    <select id="findAll" resultType="p.doctor.entity.User">
+        select * from tuser;
+    </select>
+
+    <select id="findById"  resultType="p.doctor.entity.User" parameterType="java.lang.Integer">
+        select * from tuser where id = #{id};
+    </select>
+
+    <insert id="addOne" parameterType="p.doctor.form.UserLoginForm">
+        insert into tuser (name,password,email,mobile) values
+        (#{name},#{password},#{email},#{mobile})
+    </insert>
+</mapper>
+    
